@@ -1,0 +1,3 @@
+/.idea/*
+/app/test/coverage/*
+/node_modules/*
