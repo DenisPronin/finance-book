@@ -1,0 +1,16 @@
+{
+  "name": "finance-book",
+  "version": "0.0.1",
+  "homepage": "https://github.com/DenisPronin/finance-book",
+  "authors": [
+    "Denis <pronin.idenis@gmail.com>"
+  ],
+  "license": "Apache License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
