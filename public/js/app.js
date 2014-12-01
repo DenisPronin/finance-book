@@ -1,19 +1,15 @@
 'use strict';
 
-var app = angular.module('App', []);/*.
-    config(function ($routeProvider, $locationProvider) {
+var app = angular.module('App', ['ngRoute']).
+    config(function ($routeProvider) {
         $routeProvider.
-            when('/view1', {
-                //templateUrl: 'partials/partial1',
-                controller: 'AppCtrl'
+            when('/', {
+                templateUrl: 'partials/view1'
             }).
-            when('/view2', {
-                templateUrl: 'partials/partial2',
-                controller: 'AppCtrl'
+            when('/view1', {
+                templateUrl: 'partials/view2'
             }).
             otherwise({
-                redirectTo: '/view1'
+                redirectTo: '/'
             });
-
-        $locationProvider.html5Mode(true);
-    });*/
+    });
