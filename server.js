@@ -5,6 +5,16 @@ var errorHandler = require('error-handler');
 var logger = require('morgan');
 var http = require('http');
 var path = require('path');
+var mysql = require('mysql');
+var myConnection = require('express-myconnection');
+
+var dbOptions = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'fb_finance'
+};
+
 
 var routes = require('./routes');
 var api = require('./routes/api');
@@ -22,6 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/*
+* mysql connection
+* */
+app.use(myConnection(mysql, dbOptions, 'single'));
 
 /**
  * Routes

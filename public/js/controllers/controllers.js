@@ -7,7 +7,7 @@ app.controller('AppCtrl', function ($scope, $http) {
         url: '/api/name'
     })
     .success(function (data, status, headers, config) {
-        $scope.name = data.name;
+        $scope.names = data;
     })
     .error(function (data, status, headers, config) {
         $scope.name = 'Error!';
