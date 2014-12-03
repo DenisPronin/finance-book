@@ -20,30 +20,11 @@ module.exports = function (app) {
     app.use(bodyParser.urlencoded({ extended: false }));
 
     app.use(methodOverride());
-    app.use(express.static(path.join(__dirname + '../..', 'public')));
+    app.use(express.static(path.join(__dirname, '../../public')));
 
     /*
      * mysql connection
      * */
-    app.use(myConnection(mysql, config.dbOptions, 'single')); // single, request
-
-    // catch 404 and forward to error handler
-    app.use(function(req, res, next) {
-        var err = new Error('Not Found');
-        err.status = 404;
-        next(err);
-    });
-
-    // development error handler
-    // will print stacktrace
-    if (app.get('env') === 'development') {
-        app.use(function(err, req, res, next) {
-            res.status(err.status || 500);
-            res.render('error', {
-                message: err.message,
-                error: err
-            });
-        });
-    }
+    app.use(myConnection(mysql, config.dbOptions, 'single'));
 
 };
