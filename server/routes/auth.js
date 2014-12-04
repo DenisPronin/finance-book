@@ -4,12 +4,12 @@ module.exports = function (app) {
     app.get('/auth', function (req, res) {
 
         if (req.isAuthenticated()) {
-            res.redirect('/');
+            res.redirect('/book');
             return;
         }
 
-        res.render('auth', {
-            error: req.flash('error', 'lalala')
+        res.render('layout', {
+            error: req.flash('error')
         });
     });
 
@@ -19,7 +19,7 @@ module.exports = function (app) {
     });
 
     app.post('/auth', passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/auth',
         failureRedirect: '/auth',
         failureFlash: true
     }));
