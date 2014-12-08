@@ -10,9 +10,6 @@ var flash = require('connect-flash');
 
 var session = require('express-session');
 
-var mysql = require('mysql');
-var myConnection = require('express-myconnection');
-
 module.exports = function (app) {
     require("./passport")(app);
 
@@ -42,7 +39,6 @@ module.exports = function (app) {
     /*
      * mysql connection
      * */
-    app.use(myConnection(mysql, config.dbOptions, 'single'));
 
 
 };
