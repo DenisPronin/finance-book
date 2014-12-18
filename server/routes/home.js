@@ -43,6 +43,10 @@ module.exports = function (app) {
         res.render('partials/' + name);
     });
 
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
 };
 

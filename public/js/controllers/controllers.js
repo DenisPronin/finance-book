@@ -18,4 +18,15 @@ app.controller('AppCtrl', function ($scope, $http) {
 app.controller('AppCtrl2', function ($scope, $http) {
 
     $scope.name = '123';
+
+    $scope.logout = function(){
+        $.ajax({
+            type: 'GET',
+            url: '/logout',
+            success: function(data){
+                console.log(data);
+            }
+        });
+
+    };
 });
