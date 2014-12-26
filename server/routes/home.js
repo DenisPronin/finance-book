@@ -1,6 +1,15 @@
+var passport = require('passport');
+
 module.exports = function (app) {
     app.get('/', function (req, res) {
-        res.render('landing');
+        if(!req.isAuthenticated()) {
+            res.render('landing', {
+                message: req.flash('message')
+            });
+        }
+        else {
+            res.render('layout');
+        }
     });
 
     app.get('/book', function (req, res) {

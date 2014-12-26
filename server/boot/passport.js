@@ -39,12 +39,12 @@ function(req, email, password, done) {
                     return done(err);
                 }
                 if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                    return done(null, false, req.flash('message', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
                 }
 
                 // if the user is found but the password is wrong
                 if (!bcrypt.compareSync(password, rows[0].password)) {
-                    return done(null, false, req.flash('loginMessage', 'Wrong password.'));
+                    return done(null, false, req.flash('message', 'Wrong password.'));
                 }
 
                 // all is well, return successful user
@@ -66,17 +66,22 @@ passport.use(
             // by default, local strategy uses username and password, we will override with email
             usernameField : 'email',
             passwordField : 'password',
+            confirmPasswordField : 'confirmPassword',
             nickField : 'nickname',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, email, password, done) {
+            if(password !== req.body.confirmPassword) {
+                return done(null, false, req.flash('message', 'Password do not match!'));
+            }
+
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             connection.query("select * from users where email = '" + email + "'", function(err, rows) {
                 if (err)
                     return done(err);
                 if (rows.length) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    return done(null, false, req.flash('message', 'That email is already taken.'));
                 } else {
                     // if there is no user with that email
                     // create the user

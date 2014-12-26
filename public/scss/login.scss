@@ -36,8 +36,7 @@
     &:active,
     &.active {
       color: #8D8989;
-      text-decoration: none;
-      outline: none;
+      @extend .no_decoration;
     }
 
   }
@@ -45,4 +44,14 @@
 
 #signUpContainer {
   display: none;
+}
+
+.fb-brand {
+  color: #131517;
+
+  &:hover,
+  &:active {
+    @extend .no_decoration;
+  }
+
 }
