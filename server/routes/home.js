@@ -34,18 +34,28 @@ module.exports = function (app) {
         failureFlash : true // allow flash messages
     }));
 
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/login');
+    });
+
     app.get('/book', function (req, res) {
-        res.render('layout');
+        if(!req.isAuthenticated()) {
+            res.redirect('/');
+        }
+        else {
+            res.render('layout');
+        }
     });
 
     app.get('/book/partials/:name', function (req, res) {
-        var name = req.params.name;
-        res.render('partials/' + name);
-    });
-
-    app.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
+        if(!req.isAuthenticated()) {
+            res.redirect('/');
+        }
+        else {
+            var name = req.params.name;
+            res.render('partials/' + name);
+        }
     });
 
 };
