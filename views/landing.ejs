@@ -1,17 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html class="full">
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Finance book</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/landing.css"/>
 </head>
 <body>
 
-    <div class="container">
-        <a href="/login">Sign in</a>
-        <a href="/sign_up">Sign up</a>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="pull-right">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="https://github.com/DenisPronin/finance-book" target="_blank">
+                        <i class="fa fa-github"></i>
+                        Github
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <h1>Finance Book</h1>
+
+            <!--<a href="/login">Sign in</a>-->
+            <!--<a href="/sign_up">Sign up</a>-->
+
+            <h3 class="loginHeader">
+                Please <a href="#" id="loginLink" class="active">Log In</a>, or <a href="#" id="signUpLink">Sign Up</a>
+            </h3>
+            <div id="loginContainer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-primary btn-block">VK</a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
+                    </div>
+                </div>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">or</span>
+                </div>
+
+                <form role="form" action="/login" method="post">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">Email</label>
+                        <input type="text" name="email" class="form-control" id="inputUsernameEmail">
+                    </div>
+                    <div class="form-group">
+                        <a class="pull-right" href="#">Forgot password?</a>
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword">
+                    </div>
+                    <button type="submit" class="btn btn btn-primary">
+                        Log In
+                    </button>
+                </form>
+            </div>
+
+            <div id="signUpContainer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-primary btn-block">VK</a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
+                    </div>
+                </div>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">or</span>
+                </div>
+
+                <form role="form" action="/sign_up" method="post">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputUsernameEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsername">Name</label>
+                        <input type="text" name="nickname" class="form-control" id="inputUsername">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm password</label>
+                        <input type="password" name="password" class="form-control" id="confirmPassword">
+                    </div>
+                    <button type="submit" class="btn btn btn-primary">
+                        Sign Up
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/landing.js"></script>
 
 </body>
 </html>
