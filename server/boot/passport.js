@@ -72,7 +72,7 @@ passport.use(
         },
         function(req, email, password, done) {
             if(password !== req.body.confirmPassword) {
-                return done(null, false, req.flash('message', 'Password do not match!'));
+                return done(null, false, req.flash('message', 'Confirmed password is wrong!'));
             }
 
             // find a user whose email is the same as the forms email

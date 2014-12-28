@@ -11,33 +11,16 @@
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-    <div class="pull-right">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="https://github.com/DenisPronin/finance-book" target="_blank">
-                        <i class="fa fa-github"></i>
-                        Github
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%- include landing/footer.ejs %>
 
 <!-- Page Content -->
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sm-12 form-container">
             <h1><a href="/" class="fb-brand">Finance Book</a></h1>
 
-            <!--<a href="/login">Sign in</a>-->
-            <!--<a href="/sign_up">Sign up</a>-->
-
             <h3 class="loginHeader">
-                Please <a href="#" id="loginLink" class="active">Log In</a>, or <a href="#" id="signUpLink">Sign Up</a>
+                Please <a href="#" id="loginLink" class="active">Log In</a>, or <a href="/sign_up" id="signUpLink">Sign Up</a>
             </h3>
 
             <div class="row">
@@ -74,37 +57,12 @@
                 </form>
             </div>
 
-            <div id="signUpContainer">
-                <form role="form" action="/sign_up" method="post">
-                    <div class="form-group">
-                        <label for="inputUsernameEmail">Email</label>
-                        <input type="email" name="email" class="form-control" id="inputUsernameEmail">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputUsername">Name</label>
-                        <input type="text" name="nickname" class="form-control" id="inputUsername">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" name="password" class="form-control" id="inputPassword">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm password</label>
-                        <input type="password" name="confirmPassword" class="form-control" id="confirmPassword">
-                    </div>
-                    <button type="submit" class="btn btn btn-primary">
-                        Sign Up
-                    </button>
-                </form>
-
-            </div>
         </div>
     </div>
 </div>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="js/landing.js"></script>
 
 </body>
 </html>

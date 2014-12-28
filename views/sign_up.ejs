@@ -1,37 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html class="full">
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Finance book</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/landing.css"/>
 </head>
 <body>
 
+<%- include landing/footer.ejs %>
+
+<!-- Page Content -->
 <div class="container">
-    <h1>Authorization</h1>
+    <div class="row">
+        <div class="col-md-4 col-sm-12 form-container">
+            <h1><a href="/" class="fb-brand">Finance Book</a></h1>
 
-    <% if (message.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
-    <% } %>
+            <h3 class="loginHeader">
+                Please <a href="/" id="loginLink" class="active">Log In</a>, or <a href="#" id="signUpLink">Sign Up</a>
+            </h3>
 
-    <div class="sign-in-form">
-        <form action="/sign_up" method="post">
-            <div>
-                <input type="email" name="email" class="input user" placeholder="email"/>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <a href="#" class="btn btn-lg btn-primary btn-block">VK</a>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
+                </div>
             </div>
-            <div>
-                <input type="text" name="nickname" class="input password" placeholder="nickname"/>
+            <div class="login-or">
+                <hr class="hr-or">
+                <span class="span-or">or</span>
             </div>
-            <div>
-                <input type="password" name="password" class="input password" placeholder="password"/>
+
+            <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+
+            <div id="signUpContainer">
+                <form role="form" action="/sign_up" method="post">
+                    <div class="form-group">
+                        <label for="signUpEmail">Email</label>
+                        <input type="email" name="email" class="form-control" id="signUpEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsername">Name</label>
+                        <input type="text" name="nickname" class="form-control" id="inputUsername">
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <input type="password" name="password" class="form-control" id="signUpPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm password</label>
+                        <input type="password" name="confirmPassword" class="form-control" id="confirmPassword">
+                    </div>
+                    <button type="submit" class="btn btn btn-primary">
+                        Sign Up
+                    </button>
+                </form>
+
             </div>
-            <div>
-                <button>Sign up</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

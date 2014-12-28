@@ -42,10 +42,6 @@
   }
 }
 
-#signUpContainer {
-  display: none;
-}
-
 .fb-brand {
   color: #131517;
 
@@ -54,4 +50,9 @@
     @extend .no_decoration;
   }
 
+}
+
+.form-container {
+  background-color: rgba(0, 0, 91, 0.15);
+  padding: 20px;
 }

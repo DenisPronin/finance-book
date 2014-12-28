@@ -8,8 +8,14 @@ module.exports = function (app) {
             });
         }
         else {
-            res.render('layout');
+            res.redirect('/book');
         }
+    });
+
+    app.get('/sign_up', function (req, res) {
+        res.render('sign_up', {
+            message: req.flash('message')
+        });
     });
 
     app.get('/book', function (req, res) {
