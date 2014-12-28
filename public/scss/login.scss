@@ -32,10 +32,12 @@
 
   #loginLink,
   #signUpLink {
+    color: #8D8989;
+
     &:hover,
     &:active,
     &.active {
-      color: #8D8989;
+      color: #337ab7;
       @extend .no_decoration;
     }
 

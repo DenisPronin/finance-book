@@ -4,7 +4,8 @@ module.exports = function (app) {
     app.get('/', function (req, res) {
         if(!req.isAuthenticated()) {
             res.render('landing', {
-                message: req.flash('message')
+                message: req.flash('message'),
+                isSignInForm: true
             });
         }
         else {
@@ -13,8 +14,9 @@ module.exports = function (app) {
     });
 
     app.get('/sign_up', function (req, res) {
-        res.render('sign_up', {
-            message: req.flash('message')
+        res.render('landing', {
+            message: req.flash('message'),
+            isSignInForm: false
         });
     });
 
