@@ -2,4 +2,6 @@
 /node_modules/*
 /public/bower_components/*
 npm-debug.log
-/public/dist
+/public/build
+/public/scss/*.css
+/public/scss/*.css.map
