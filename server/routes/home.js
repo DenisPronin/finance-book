@@ -39,5 +39,18 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/book/getUser', function (req, res) {
+        if(!req.isAuthenticated()) {
+            res.redirect('/');
+        }
+        else {
+            var user = req.user;
+            res.json({
+                name: user.name,
+                email: user.email
+            });
+        }
+    });
+
 };
 

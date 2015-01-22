@@ -45,7 +45,8 @@ gulp.task('scripts', function() {
         .pipe(sourcemaps.init())
         .pipe(concat("app-finance.js"))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(sources.js.build));
+        .pipe(gulp.dest(sources.js.build))
+        .pipe(connect.reload());
 });
 
 gulp.task('html', function () {
