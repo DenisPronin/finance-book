@@ -23,18 +23,20 @@
         </div>
         <nav class="navbar-collapse bs-navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
-                <li>
+                <li class="active">
                     <a href="/">Planning</a>
                 </li>
                 <li>
                     <a href="/archive">Archive</a>
                 </li>
             </ul>
-            <user-header></user-header>
+            <div ng-controller="userCtrl">
+                <user-header></user-header>
+            </div>
         </nav>
     </header>
-    <div>
-        <div data-ng-view></div>
+    <div class="finance-book" role="main" ng-controller="bookCtrl">
+        <finance-book></finance-book>
     </div>
 
     <script src="bower_components/angular/angular.js"></script>

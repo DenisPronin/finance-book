@@ -25,13 +25,17 @@
                     setUserEmail(data.email);
                     deferred.resolve(user);
                 }).
-                error(function(data) {
+                error(function() {
                     console.log('You are not authorized!');
                     deferred.reject();
                 });
 
             return deferred.promise;
-        }
+        };
+
+        this.logout = function() {
+            $http.get('/logout');
+        };
 
     }]);
 

@@ -1,5 +1,3 @@
-var passport = require('passport');
-
 module.exports = function (app) {
     app.get('/', function (req, res) {
         if(!req.isAuthenticated()) {
@@ -26,16 +24,6 @@ module.exports = function (app) {
         }
         else {
             res.render('layout');
-        }
-    });
-
-    app.get('/book/partials/:name', function (req, res) {
-        if(!req.isAuthenticated()) {
-            res.redirect('/');
-        }
-        else {
-            var name = req.params.name;
-            res.render('partials/' + name);
         }
     });
 

@@ -5,10 +5,7 @@
         return {
             restrict: 'E',
             templateUrl: 'js/app/user/templates/user-header-tpl.html',
-            replace: true,
-            link: function(scope, element) {
-
-            }
+            replace: true
         }
     }]);
 

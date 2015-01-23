@@ -2,20 +2,12 @@
     'use strict';
 
     var UserModule = angular.module('User', []);
+    var BookModule = angular.module('Book', []);
 
     var App = angular.module('App', [
         'ngRoute',
-        'User'
-    ]).config(function ($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'book/partials/book'
-        }).
-        when('/book', {
-            templateUrl: 'book/partials/book'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-    });
+        'User',
+        'Book'
+    ]);
 
 })();

@@ -18,7 +18,7 @@ var sources = {
         dev: ['./public/scss/**/*.scss'],
         build: './public/build/css'
     },
-    templates: ['./views/**/*.ejs']
+    templates: ['./views/**/*.ejs', './public/js/**/*.html']
 };
 
 gulp.task('connect', function(){
