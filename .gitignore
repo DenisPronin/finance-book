@@ -3,5 +3,5 @@
 /public/bower_components/*
 npm-debug.log
 /public/build
-/public/scss/*.css
-/public/scss/*.css.map
+/public/scss/**/*.css
+/public/scss/**/*.css.map

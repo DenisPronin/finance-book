@@ -7,5 +7,8 @@ body {
 .no_decoration {
   text-decoration: none;
   outline: none;
+}
 
+@mixin display_table {
+  display: table;
 }

@@ -7,6 +7,7 @@
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <link href="build/css/app.css" rel="stylesheet">
 
 </head>
 <body data-ng-app="App">
@@ -35,9 +36,11 @@
             </div>
         </nav>
     </header>
-    <div class="finance-book" role="main" ng-controller="bookCtrl">
+    <main id="finance-book" role="main" ng-controller="bookCtrl">
         <finance-book></finance-book>
-    </div>
+    </main>
+
+    <%- include landing/footer.ejs %>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
