@@ -14,14 +14,14 @@
 
                 $scope.$watch(function() {
                     return Time.getMonth();
-                }, function(newValue, oldValue){
+                }, function(newValue){
                     $scope.currentMonth = newValue;
                     $scope.currentMonthName = $scope.currentMonth['en'];
                 });
 
                 $scope.$watch(function() {
                     return Time.getYear();
-                }, function(newValue, oldValue){
+                }, function(newValue){
                     $scope.currentYear = newValue;
                 });
 
@@ -31,6 +31,28 @@
 
                 $scope.changeYear = function(year) {
                     Time.setYear(year);
+                };
+
+                $scope.minusMonth = function() {
+                    var id = $scope.currentMonth.id;
+                    if(id > 0) {
+                        Time.setMonth(id - 1);
+                    }
+                };
+
+                $scope.plusMonth = function() {
+                    var id = $scope.currentMonth.id;
+                    if(id < $scope.months.length - 1) {
+                        Time.setMonth(id + 1);
+                    }
+                };
+
+                $scope.minusYear = function() {
+                    Time.setYear(parseInt($scope.currentYear) - 1);
+                };
+
+                $scope.plusYear = function() {
+                    Time.setYear(parseInt($scope.currentYear) + 1);
                 };
 
                 Time.init();

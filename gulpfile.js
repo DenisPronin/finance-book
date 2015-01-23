@@ -15,7 +15,8 @@ var sources = {
         build: './public/build/js'
     },
     sass: {
-        dev: ['./public/scss/app.scss', './public/scss/app.scss'],
+        dev: ['./public/scss/**/*.scss'],
+        main: ['./public/scss/app.scss', './public/scss/main.scss'],
         build: './public/build/css'
     },
     templates: ['./views/**/*.ejs', './public/js/**/*.html']
@@ -30,7 +31,7 @@ gulp.task('connect', function(){
 });
 
 gulp.task('sass', function () {
-    gulp.src(sources.sass.dev)
+    gulp.src(sources.sass.main)
         .pipe(sass())
         .pipe(urlAdjuster({
             prependRelative: '/build/'
