@@ -21,7 +21,7 @@
 
                 $scope.$watch(function() {
                     return Time.getYear();
-                }, function(newValue){
+                }, function(newValue, oldValue){
                     $scope.currentYear = newValue;
                 });
 
@@ -36,29 +36,28 @@
                 $scope.minusMonth = function() {
                     var id = $scope.currentMonth.id;
                     if(id > 0) {
-                        Time.setMonth(id - 1);
+                        $scope.changeMonth(id - 1);
                     }
                 };
 
                 $scope.plusMonth = function() {
                     var id = $scope.currentMonth.id;
                     if(id < $scope.months.length - 1) {
-                        Time.setMonth(id + 1);
+                        $scope.changeMonth(id + 1);
                     }
                 };
 
                 $scope.minusYear = function() {
-                    Time.setYear(parseInt($scope.currentYear) - 1);
+                    $scope.changeYear(parseInt($scope.currentYear) - 1);
                 };
 
                 $scope.plusYear = function() {
-                    Time.setYear(parseInt($scope.currentYear) + 1);
+                    $scope.changeYear(parseInt($scope.currentYear) + 1);
                 };
 
                 Time.init();
             },
             link: function(scope, element) {
-
             }
         }
     }]);

@@ -22,7 +22,9 @@
         <a href="#" class="year-scroller pull-left" ng-click="minusYear()">
             <i class="fa fa-chevron-left"></i>
         </a>
-        <input type="text" ng-model="currentYear" class="form-control pull-left"/>
+        <button type="button" class="btn btn-default pull-left" data-toggle="dropdown">
+            {{ currentYear }}
+        </button>
         <a href="#" class="year-scroller pull-left" ng-click="plusYear()">
             <i class="fa fa-chevron-right"></i>
         </a>
