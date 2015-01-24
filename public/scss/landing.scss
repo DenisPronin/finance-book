@@ -1,8 +1,8 @@
-@import '../main';
-@import 'login';
+@import 'main';
+@import 'landing/login';
 
 .full {
-  background: url(../../img/banner.jpg) no-repeat center center fixed;
+  background: url(../img/banner.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

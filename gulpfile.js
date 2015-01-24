@@ -16,7 +16,7 @@ var sources = {
     },
     sass: {
         dev: ['./public/scss/**/*.scss'],
-        main: ['./public/scss/app.scss', './public/scss/main.scss'],
+        main: ['./public/scss/app.scss', './public/scss/landing/landing.scss'],
         build: './public/build/css'
     },
     templates: ['./views/**/*.ejs', './public/js/**/*.html']
