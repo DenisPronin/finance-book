@@ -3,5 +3,6 @@ module.exports = function (app) {
     require('./auth')(app);
     require('./accounts')(app);
     require('./income')(app);
+    require('./debts')(app);
 };
 

@@ -1,0 +1,25 @@
+<div class="debts-container" ng-controller="debtsCtrl">
+    <h2>Debts</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="debt in debts" ng-if="debts.length > 0">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ debt.name }}</td>
+            <td>{{ debt.money }}</td>
+            <td>{{ debt.deadline }}</td>
+        </tr>
+        <tr ng-if="debts.length === 0">
+            <td colspan="4"> No data</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
