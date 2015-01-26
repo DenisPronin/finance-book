@@ -17,7 +17,7 @@ var income = {
 };
 
 var getIncome = function(monthId, year, userId, callback) {
-    var fields = common.getFieldsFromModel(income);
+    var fields = common.getFieldsFromModel(income, ['user_id']);
     connection.query('select ' + fields + ' from income where month_id = '+ monthId + ' and year = ' + year + ' and user_id=' + userId, function(err, rows){
         callback(err, rows);
     });

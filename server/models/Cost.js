@@ -18,7 +18,7 @@ var cost = {
 };
 
 var getCost = function(monthId, year, userId, callback) {
-    var fields = common.getFieldsFromModel(cost);
+    var fields = common.getFieldsFromModel(cost, ['user_id']);
     connection.query('select ' + fields + ' from costs where month_id = '+ monthId + ' and year = ' + year + ' and user_id=' + userId, function(err, rows){
         callback(err, rows);
     });

@@ -20,6 +20,30 @@
             return deferred.promise;
         };
 
+        me.addAccount = function(newAccount) {
+            var deferred = $q.defer();
+            var month = Time.getMonth();
+            var year = Time.getYear();
+
+            newAccount.month_id = month.id;
+            newAccount.year = year;
+            newAccount.currency_id = 2;
+            $http.put('/accounts/add', newAccount)
+                .success(function(account) {
+                    if(!account && !account.ok) {
+                        deferred.reject();
+                    }
+                    deferred.resolve(newAccount);
+                }).
+                error(function() {
+                    console.log('Account don\'t added!');
+                    deferred.reject();
+                });
+
+
+            return deferred.promise;
+        };
+
     }]);
 
 })();

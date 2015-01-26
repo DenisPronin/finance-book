@@ -18,7 +18,7 @@ var debts = {
 };
 
 var getDebts = function(monthId, year, userId, callback) {
-    var fields = common.getFieldsFromModel(debts);
+    var fields = common.getFieldsFromModel(debts, ['user_id']);
     connection.query('select ' + fields + ' from debts where month_id = '+ monthId + ' and year = ' + year + ' and user_id=' + userId, function(err, rows){
         callback(err, rows);
     });

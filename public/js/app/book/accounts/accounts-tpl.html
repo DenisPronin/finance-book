@@ -1,5 +1,12 @@
 <div class="accounts-container" ng-controller="accountsCtrl">
-    <h2>Accounts</h2>
+    <div>
+        <h4 class="pull-left">Accounts</h4>
+        <span class="table-controls">
+            <a href="#" class="table-control" ng-click="showAddAccountForm()">
+                <i class="fa fa-plus-circle"></i>
+            </a>
+        </span>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -13,6 +20,25 @@
                 <td>{{ $index + 1 }}</td>
                 <td>{{ account.name }}</td>
                 <td>{{ account.money }}</td>
+            </tr>
+            <tr ng-if="newAccount">
+                <td>
+                    {{ accounts.length + 1 }}
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="newAccount.name"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control last-add-field" ng-model="newAccount.money"/>
+                    <div class="add-controls pull-right">
+                        <button type="button" class="btn btn-success" ng-click="addAccount()">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger" ng-click="cancelAddAccount()">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </td>
             </tr>
             <tr ng-if="accounts.length === 0">
                 <td colspan="4"> No data</td>
