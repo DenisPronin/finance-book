@@ -2,7 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
-var User = require('../models/user');
+var User = require('../models/User');
 
 // =========================================================================
 // passport session setup ==================================================

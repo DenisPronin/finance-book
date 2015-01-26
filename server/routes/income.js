@@ -1,17 +1,17 @@
-var Accounts = require('../models/Account');
+var Income = require('../models/Income');
 
 module.exports = function (app) {
-    app.get('/accounts/:monthId/:year', function (req, res) {
+    app.get('/income/:monthId/:year', function (req, res) {
         if(!req.isAuthenticated()) {
             res.redirect('/');
         }
         else {
             var user = req.user;
-            Accounts.getAccount(req.params.monthId, req.params.year, user.id, function(err, accounts) {
+            Income.getIncome(req.params.monthId, req.params.year, user.id, function(err, income) {
                 if(err) {
                     return done(err);
                 }
-                res.json(accounts);
+                res.json(income);
             });
         }
     });

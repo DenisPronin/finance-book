@@ -9,11 +9,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="account in accounts">
+            <tr ng-repeat="account in accounts" ng-if="accounts.length > 0">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ account.name }}</td>
                 <td>{{ account.money }}</td>
             </tr>
+            <tr ng-if="accounts.length === 0">
+                <td colspan="4"> No data</td>
+            </tr>
+
         </tbody>
     </table>
 </div>
