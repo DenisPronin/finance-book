@@ -4,5 +4,6 @@ module.exports = function (app) {
     require('./accounts')(app);
     require('./income')(app);
     require('./debts')(app);
+    require('./costs')(app);
 };
 
