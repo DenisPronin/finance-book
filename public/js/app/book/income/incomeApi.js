@@ -1,27 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('Book').service('incomeApi', ['$http', '$q', 'Time', function($http, $q, Time) {
+    angular.module('Book').service('incomeApi', ['$http', '$q', 'Time', 'bookService', function($http, $q, Time, bookService) {
 
         var me = this;
+        var mode = 'income';
         var income = [];
 
         me.getIncome = function(){
             var deferred = $q.defer();
-            var month = Time.getMonth();
-            var year = Time.getYear();
 
-            $http.get('/income/' + month.id + '/' + year).
-                success(function(income) {
-                    if(!income) {
-                        deferred.reject();
-                    }
-                    deferred.resolve(income);
-                }).
-                error(function() {
-                    console.log('You are not authorized!');
-                    deferred.reject();
-                });
+            bookService.getTableData(mode).then(function(income) {
+                deferred.resolve(income);
+            }, function() {
+                deferred.reject();
+            });
 
             return deferred.promise;
         };

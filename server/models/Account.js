@@ -2,6 +2,8 @@ var config = require('./../config').config;
 var mysql = require('mysql');
 var connection = mysql.createConnection(config.dbOptions);
 
+var common = require('./common');
+
 var account = {
     id: 'int',
     name: 'string',
@@ -14,10 +16,7 @@ var account = {
 };
 
 var getAccount = function(monthId, year, userId, callback) {
-    var fields = Object.keys(account).filter(function(_field) {
-        return (_field !== 'user_id');
-    });
-    fields = fields.join(',');
+    var fields = common.getFieldsFromModel(account);
     connection.query('select ' + fields + ' from accounts where month_id = '+ monthId + ' and year = ' + year + ' and user_id=' + userId, function(err, rows){
         callback(err, rows);
     });
