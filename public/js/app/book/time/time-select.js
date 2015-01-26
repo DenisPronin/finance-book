@@ -4,7 +4,7 @@
     angular.module('Book').directive('timeSelect', [function(){
         return {
             restrict: 'E',
-            templateUrl: 'js/app/book/templates/time-select-tpl.html',
+            templateUrl: 'js/app/book/time/time-select-tpl.html',
             replace: true,
             controller: function($scope, Time) {
                 $scope.months = Time.getMonthsList();

@@ -4,7 +4,7 @@
     angular.module('Book').directive('accounts', [function(){
         return {
             restrict: 'E',
-            templateUrl: 'js/app/book/templates/accounts-tpl.html',
+            templateUrl: 'js/app/book/accounts/accounts-tpl.html',
             replace: true
         }
     }]);

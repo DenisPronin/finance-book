@@ -4,7 +4,7 @@
     angular.module('Book').directive('financeBook', [function(){
         return {
             restrict: 'E',
-            templateUrl: 'js/app/book/templates/finance-book-tpl.html',
+            templateUrl: 'js/app/book/finance-book-tpl.html',
             replace: true
         }
     }]);
