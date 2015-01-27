@@ -39,7 +39,15 @@ var addAccount = function(newAccount, callback) {
     })
 };
 
+var deleteAccount = function(accountId, callback) {
+    var query = 'delete from accounts where id = ' + accountId;
+    connection.query(query, function(err, account) {
+        callback(err, account);
+    })
+};
+
 module.exports = {
     getAccount: getAccount,
-    addAccount: addAccount
+    addAccount: addAccount,
+    deleteAccount: deleteAccount
 };

@@ -1,15 +1,31 @@
-.table-controls {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  @include display_table;
+.accounts-container {
+  .table-controls {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    @include display_table;
 
-  .table-control {
+    .table-control {
+      margin: 0 5px;
+
+      &.disabled {
+        opacity: 0.5;
+      }
+    }
   }
-}
 
-.last-add-field {
-  float: left;
-  margin-right: 15px;
-  width: 60%;
+  table {
+    tr {
+      cursor: pointer;
+      &.selected {
+        background: #8fbced;
+      }
+    }
+  }
+
+  .last-add-field {
+    float: left;
+    margin-right: 15px;
+    width: 60%;
+  }
 }

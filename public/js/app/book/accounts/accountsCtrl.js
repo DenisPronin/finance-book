@@ -23,6 +23,7 @@
 
         $scope.newAccount = null;
         $scope.showAddAccountForm = function() {
+            $scope.selectedAccount = null;
             $scope.newAccount = {
                 name: '',
                 money: ''
@@ -35,10 +36,28 @@
 
         $scope.addAccount = function() {
             $scope.newAccount.order_num = $scope.accounts.length + 1;
-            accountsApi.addAccount($scope.newAccount).then(function(account) {
+            accountsApi.addAccount($scope.newAccount).then(function(accountId) {
+                var account = $scope.newAccount;
+                account.id = accountId;
                 $scope.accounts.push(account);
+                $scope.newAccount = null;
             });
-            $scope.newAccount = null;
+        };
+
+        $scope.deleteAccount = function() {
+            if($scope.selectedAccount) {
+                var accountId = $scope.selectedAccount.id;
+                accountsApi.deleteAccount(accountId).then(function() {
+                    $scope.accounts = $scope.accounts.filter(function(_account) {
+                        return _account.id !== accountId;
+                    });
+                });
+            }
+        };
+
+        $scope.selectedAccount = null;
+        $scope.selectRow = function(account) {
+            $scope.selectedAccount = account;
         };
 
         var getAccounts = function() {

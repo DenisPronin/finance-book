@@ -41,4 +41,22 @@ module.exports = function (app) {
             });
         }
     });
+
+    app.delete('/accounts/:accountId', function(req, res, next) {
+        if(!req.isAuthenticated()) {
+            res.redirect('/');
+        }
+        else {
+            var accountId = req.params.accountId;
+            Accounts.deleteAccount(accountId, function(err, account) {
+                if(err) {
+                    return next(err);
+                }
+                res.json({
+                    ok: true,
+                    id: accountId
+                });
+            })
+        }
+    });
 };

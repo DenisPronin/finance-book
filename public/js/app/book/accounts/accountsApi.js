@@ -33,13 +33,31 @@
                     if(!account && !account.ok) {
                         deferred.reject();
                     }
-                    deferred.resolve(newAccount);
+                    deferred.resolve(account.id);
                 }).
                 error(function() {
                     console.log('Account don\'t added!');
                     deferred.reject();
                 });
 
+
+            return deferred.promise;
+        };
+
+        me.deleteAccount = function(accountId) {
+            var deferred = $q.defer();
+
+            $http.delete('/accounts/' + accountId)
+                .success(function(data) {
+                    if(!data && !data.ok) {
+                        deferred.reject();
+                    }
+                    deferred.resolve();
+                }).
+                error(function() {
+                    console.log('Account don\'t removed!');
+                    deferred.reject();
+                });
 
             return deferred.promise;
         };
