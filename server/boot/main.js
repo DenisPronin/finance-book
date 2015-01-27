@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var logger = require('morgan');
+var fs = require('fs');
+var morgan = require('morgan');
 var config = require('./../config').config;
 var path = require('path');
 var http = require('http');
@@ -17,7 +18,12 @@ module.exports = function (app) {
     app.set('views', path.join(__dirname, '../../views'));
     app.set('view engine', 'ejs');
 
-    app.use(logger('dev'));
+    if (app.get('env') == 'development') {
+        var accessLogStream = fs.createWriteStream(__dirname + '/../../errors.log', {flags: 'a'});
+        app.use(morgan('common', {stream: accessLogStream }));
+    } else {
+        app.use(morgan('dev'));
+    }
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));

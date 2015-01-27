@@ -1,7 +1,7 @@
 var Debts = require('../models/Debts');
 
 module.exports = function (app) {
-    app.get('/debts/:monthId/:year', function (req, res) {
+    app.get('/debts/:monthId/:year', function (req, res, next) {
         if(!req.isAuthenticated()) {
             res.redirect('/');
         }
@@ -9,7 +9,7 @@ module.exports = function (app) {
             var user = req.user;
             Debts.getDebts(req.params.monthId, req.params.year, user.id, function(err, debts) {
                 if(err) {
-                    return done(err);
+                    return next(err);
                 }
                 res.json(debts);
             });

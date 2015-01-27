@@ -1,7 +1,7 @@
 var Accounts = require('../models/Account');
 
 module.exports = function (app) {
-    app.get('/accounts/:monthId/:year', function (req, res) {
+    app.get('/accounts/:monthId/:year', function (req, res, next) {
         if(!req.isAuthenticated()) {
             res.redirect('/');
         }
@@ -9,14 +9,14 @@ module.exports = function (app) {
             var user = req.user;
             Accounts.getAccount(req.params.monthId, req.params.year, user.id, function(err, accounts) {
                 if(err) {
-                    return done(err);
+                    return next(err);
                 }
                 res.json(accounts);
             });
         }
     });
 
-    app.put('/accounts/add', function(req, res) {
+    app.put('/accounts/add', function(req, res, next) {
         if(!req.isAuthenticated()) {
             res.redirect('/');
         }
@@ -32,7 +32,7 @@ module.exports = function (app) {
             };
             Accounts.addAccount(newAccount, function(err, account) {
                 if(err) {
-                    return done(err);
+                    return next(err);
                 }
                 res.json({
                     ok: true,

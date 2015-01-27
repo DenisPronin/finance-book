@@ -1,7 +1,7 @@
 var Cost = require('../models/Cost');
 
 module.exports = function (app) {
-    app.get('/costs/:monthId/:year', function (req, res) {
+    app.get('/costs/:monthId/:year', function (req, res, next) {
         if(!req.isAuthenticated()) {
             res.redirect('/');
         }
@@ -9,7 +9,7 @@ module.exports = function (app) {
             var user = req.user;
             Cost.getCost(req.params.monthId, req.params.year, user.id, function(err, costs) {
                 if(err) {
-                    return done(err);
+                    return next(err);
                 }
                 res.json(costs);
             });

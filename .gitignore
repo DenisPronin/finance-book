@@ -5,3 +5,4 @@ npm-debug.log
 /public/build
 /public/scss/**/*.css
 /public/scss/**/*.css.map
+errors.log
