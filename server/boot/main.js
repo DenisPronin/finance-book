@@ -18,7 +18,7 @@ module.exports = function (app) {
     app.set('views', path.join(__dirname, '../../views'));
     app.set('view engine', 'ejs');
 
-    if (app.get('env') == 'development') {
+    if (app.get('env') == 'production') {
         var accessLogStream = fs.createWriteStream(__dirname + '/../../errors.log', {flags: 'a'});
         app.use(morgan('common', {stream: accessLogStream }));
     } else {

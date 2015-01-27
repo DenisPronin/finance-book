@@ -2,7 +2,7 @@ var config = require('./../config').config;
 var mysql = require('mysql');
 var connection = mysql.createConnection(config.dbOptions);
 
-var common = require('./common');
+var common = require('./../common');
 
 var debts = {
     id: 'int',
