@@ -55,6 +55,16 @@
             }
         };
 
+        $scope.showEditAccountForm = function() {
+            if($scope.selectedAccount) {
+            }
+        };
+
+        $scope.editAccount = function() {
+            if($scope.selectedAccount) {
+            }
+        };
+
         $scope.selectedAccount = null;
         $scope.selectRow = function(account) {
             $scope.selectedAccount = account;
