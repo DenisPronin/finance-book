@@ -6,30 +6,20 @@
     @include display_table;
 
     .table-control {
-      margin: 0 5px;
-
-      &.disabled {
-        opacity: 0.5;
-      }
+      margin-left: 5px;
     }
   }
 
   table {
     tr {
       cursor: pointer;
-      &.selected {
-        background: #8fbced;
-      }
+      height: 47px;
 
       td {
         vertical-align: middle;
       }
-    }
-  }
 
-  .last-add-field {
-    float: left;
-    margin-right: 15px;
-    width: 60%;
+    }
+
   }
 }

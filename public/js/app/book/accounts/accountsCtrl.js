@@ -24,6 +24,7 @@
         $scope.newAccount = null;
         $scope.showAddAccountForm = function() {
             $scope.selectedAccount = null;
+            $scope.editedAccount = null;
             $scope.newAccount = {
                 name: '',
                 money: ''
@@ -55,19 +56,36 @@
             }
         };
 
-        $scope.showEditAccountForm = function() {
-            if($scope.selectedAccount) {
-            }
+        $scope.editedAccount = null;
+        $scope.showEditAccountForm = function(event, account) {
+            event.stopPropagation();
+            $scope.editedAccount = account;
+        };
+
+        $scope.cancelEditAccount = function() {
+            event.stopPropagation();
+            $scope.editedAccount = null;
+            $scope.selectedAccount = null;
         };
 
         $scope.editAccount = function() {
-            if($scope.selectedAccount) {
+            event.stopPropagation();
+            if($scope.editedAccount) {
+
             }
         };
 
         $scope.selectedAccount = null;
         $scope.selectRow = function(account) {
+            if($scope.compareAccount($scope.editedAccount, account)) {
+                return false;
+            }
+            $scope.editedAccount = null;
             $scope.selectedAccount = account;
+        };
+
+        $scope.compareAccount = function(account1, account2) {
+            return (account1 && account2 && account1.id === account2.id)
         };
 
         var getAccounts = function() {
