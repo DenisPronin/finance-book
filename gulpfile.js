@@ -46,7 +46,9 @@ gulp.task("open", function(){
 
 gulp.task('sass', function () {
     gulp.src(sources.sass.main)
-        .pipe(sass())
+        .pipe(sass({
+            errLogToConsole: true
+        }))
         .pipe(urlAdjuster({
             prependRelative: '/build/'
         }))
