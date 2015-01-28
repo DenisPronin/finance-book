@@ -8,6 +8,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
+var  open = require ('gulp-open');
+var nodemon = require('gulp-nodemon');
 
 var sources = {
     js: {
@@ -19,6 +21,9 @@ var sources = {
         main: ['./public/scss/app.scss', './public/scss/landing/landing.scss'],
         build: './public/build/css'
     },
+    server: {
+        main: ['.server/**/*.js']
+    },
     templates: ['./views/**/*.ejs', './public/js/**/*.html']
 };
 
@@ -28,6 +33,14 @@ gulp.task('connect', function(){
         port: 5354,
         livereload: true
     });
+});
+
+gulp.task("open", function(){
+    gulp.src("views/landing.ejs")
+        .pipe(open("", {
+            url: "http://localhost:5353",
+            app: "google-chrome"
+        }));
 });
 
 gulp.task('sass', function () {
@@ -61,4 +74,18 @@ gulp.task('watch', function(){
     gulp.watch(sources.js.dev, ['scripts']);
 });
 
-gulp.task('dev', ['connect', 'scripts', 'sass', 'watch']);
+gulp.task('server_lint', function() {
+    gulp.src(sources.server.main)
+        .pipe(jshint());
+});
+
+gulp.task('server', function () {
+    nodemon({ script: 'server.js', ext: 'js', ignore: ['ignored.js'] })
+        .on('change', ['server_lint'])
+        .on('restart', function () {
+            console.log('restarted!');
+            connect.reload();
+        });
+});
+
+gulp.task('dev', ['connect', 'scripts', 'sass', 'watch', 'open']);
