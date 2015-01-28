@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 var connect = require('gulp-connect');
 var urlAdjuster = require('gulp-css-url-adjuster');
 
@@ -48,6 +49,9 @@ gulp.task('sass', function () {
         .pipe(sass())
         .pipe(urlAdjuster({
             prependRelative: '/build/'
+        }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
         }))
         .pipe(gulp.dest(sources.sass.build))
         .pipe(connect.reload());
