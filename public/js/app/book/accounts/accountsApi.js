@@ -62,6 +62,30 @@
             return deferred.promise;
         };
 
+        me.editAccount = function(account) {
+            var deferred = $q.defer();
+
+            var month = Time.getMonth();
+            var year = Time.getYear();
+
+            account.month_id = month.id;
+            account.year = year;
+
+            $http.post('/accounts/edit', account)
+                .success(function(data) {
+                    if(!data && !data.ok) {
+                        deferred.reject();
+                    }
+                    deferred.resolve(account.id);
+                }).
+                error(function() {
+                    console.log('Account don\'t edited!');
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
     }]);
 
 })();

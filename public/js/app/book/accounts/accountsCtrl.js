@@ -59,7 +59,7 @@
         $scope.editedAccount = null;
         $scope.showEditAccountForm = function(event, account) {
             event.stopPropagation();
-            $scope.editedAccount = account;
+            $scope.editedAccount = angular.copy(account);
         };
 
         $scope.cancelEditAccount = function() {
@@ -71,7 +71,18 @@
         $scope.editAccount = function() {
             event.stopPropagation();
             if($scope.editedAccount) {
-
+                accountsApi.editAccount($scope.editedAccount).then(function(accountId) {
+                    for (var i = 0; i < $scope.accounts.length; i++) {
+                        if($scope.accounts[i].id === accountId) {
+                            $scope.accounts[i] = $scope.editedAccount;
+                            break;
+                        }
+                    }
+                    $scope.cancelEditAccount();
+                }, function() {
+                    alert('Account don\'t edited');
+                    $scope.cancelEditAccount();
+                });
             }
         };
 

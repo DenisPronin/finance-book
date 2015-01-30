@@ -36,18 +36,32 @@ var addAccount = function(newAccount, callback) {
 
     connection.query(query, function(err, account) {
         callback(err, account);
-    })
+    });
 };
 
 var deleteAccount = function(accountId, callback) {
     var query = 'delete from accounts where id = ' + accountId;
     connection.query(query, function(err, account) {
         callback(err, account);
-    })
+    });
+};
+
+var editAccount = function(editingAccount, callback) {
+    var fields = common.getFieldsFromModel(account, ['id']);
+    var s = [];
+    for (var field in account) {
+        s.push(field + '="' + editingAccount[field] + '"');
+    }
+    s = s.join(',');
+    var query = 'update accounts set ' + s + ' where id=' + editingAccount.id;
+    connection.query(query, function(err, account) {
+        callback(err, account);
+    });
 };
 
 module.exports = {
     getAccount: getAccount,
     addAccount: addAccount,
-    deleteAccount: deleteAccount
+    deleteAccount: deleteAccount,
+    editAccount: editAccount
 };
