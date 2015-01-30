@@ -13,9 +13,12 @@
   table {
     tr {
       cursor: pointer;
-      height: 47px;
 
+      td, th {
+        text-align: center;
+      }
       td {
+        line-height: 34px;
         vertical-align: middle;
       }
 
