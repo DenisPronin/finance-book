@@ -36,11 +36,13 @@ gulp.task('connect', function(){
     });
 });
 
+var isWin = /^win/.test(process.platform);
+
 gulp.task("open", function(){
     gulp.src("views/landing.ejs")
         .pipe(open("", {
             url: "http://localhost:5353",
-            app: "google-chrome"
+            app: (isWin) ? 'chrome' : 'google-chrome'
         }));
 });
 
