@@ -33,10 +33,13 @@
                 </td>
                 <td>
                     <span ng-if="!compareAccount(editedAccount, account)">{{ account.money }}</span>
+                    <span ng-if="!compareAccount(editedAccount, account)">{{ showCurrencySign(account.currency_id) }}</span>
                     <span ng-if="compareAccount(editedAccount, account)">
                         <input type="text" class="form-control" ng-model="editedAccount.money"/>
                     </span>
-
+                    <span ng-if="compareAccount(editedAccount, account)">
+                        <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="editedAccount.currency_id"></select>
+                    </span>
                 </td>
                 <td>
                     <div ng-show="compareAccount(selectedAccount, account) && !editedAccount" class="pull-right row-table-controls">

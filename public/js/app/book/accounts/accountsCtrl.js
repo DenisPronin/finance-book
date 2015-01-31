@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('Book').controller('accountsCtrl', ['$scope', 'accountsApi', 'Time', function($scope, accountsApi, Time) {
+    angular.module('Book').controller('accountsCtrl', ['$scope', 'accountsApi', 'Time', 'currencyApi', function($scope, accountsApi, Time, currencyApi) {
 
         $scope.accounts = [];
+        $scope.currencyList = currencyApi.getCurrencyList();
 
         $scope.$watch(function() {
             return Time.getMonth();
@@ -20,6 +21,11 @@
                 getAccounts();
             }
         });
+
+        $scope.showCurrencySign = function(currency_id) {
+            var currency = currencyApi.getCurrencyById(currency_id);
+            return currency.sign;
+        };
 
         $scope.newAccount = null;
         $scope.showAddAccountForm = function() {
