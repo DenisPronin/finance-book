@@ -27,7 +27,6 @@
 
             newAccount.month_id = month.id;
             newAccount.year = year;
-            newAccount.currency_id = 2;
             $http.put('/accounts/add', newAccount)
                 .success(function(account) {
                     if(!account && !account.ok) {
@@ -39,7 +38,6 @@
                     console.log('Account don\'t added!');
                     deferred.reject();
                 });
-
 
             return deferred.promise;
         };

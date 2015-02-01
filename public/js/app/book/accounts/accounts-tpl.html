@@ -71,6 +71,7 @@
                 </td>
                 <td>
                     <input type="text" class="form-control" ng-model="newAccount.money"/>
+                    <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="newAccount.currency_id"></select>
                 </td>
                 <td>
                     <div class="add-controls pull-right">

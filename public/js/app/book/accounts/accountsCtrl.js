@@ -33,7 +33,8 @@
             $scope.editedAccount = null;
             $scope.newAccount = {
                 name: '',
-                money: ''
+                money: '',
+                currency_id: 2
             }
         };
 
