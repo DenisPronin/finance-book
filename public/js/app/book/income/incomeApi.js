@@ -7,7 +7,7 @@
         var mode = 'income';
         var income = [];
 
-        me.getIncome = function(){
+        me.get = function(){
             var deferred = $q.defer();
 
             bookService.getTableData(mode).then(function(income) {

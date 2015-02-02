@@ -2,7 +2,7 @@
     <div>
         <h4 class="pull-left">Accounts</h4>
         <span class="table-controls">
-            <a href="#" class="table-control btn btn-sm btn-success" ng-click="showAddAccountForm()" title="Add account" data-toggle="tooltip" data-position="top" tooltip>
+            <a href="#" class="table-control btn btn-sm btn-success" ng-click="showAddForm(newAccountProps)" title="Add account" data-toggle="tooltip" data-position="top" tooltip>
                 <i class="fa fa-plus"></i>
             </a>
         </span>
@@ -23,62 +23,62 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="account in accounts" ng-if="accounts.length > 0" ng-click="selectRow(account)" ng-class="{'info': compareAccount(selectedAccount, account)}">
+            <tr ng-repeat="account in accounts" ng-if="accounts.length > 0" ng-click="selectRow(account)" ng-class="{'info': compareRow(selectedRow, account)}">
                 <td>{{ $index + 1 }}</td>
                 <td>
-                    <span ng-if="!compareAccount(editedAccount, account)">{{ account.name }}</span>
-                    <span ng-if="compareAccount(editedAccount, account)">
-                        <input type="text" class="form-control" ng-model="editedAccount.name"/>
+                    <span ng-if="!compareRow(editedRow, account)">{{ account.name }}</span>
+                    <span ng-if="compareRow(editedRow, account)">
+                        <input type="text" class="form-control" ng-model="editedRow.name"/>
                     </span>
                 </td>
                 <td>
-                    <span ng-if="!compareAccount(editedAccount, account)">{{ account.money }}</span>
-                    <span ng-if="!compareAccount(editedAccount, account)">{{ showCurrencySign(account.currency_id) }}</span>
-                    <span ng-if="compareAccount(editedAccount, account)">
-                        <input type="text" class="form-control" ng-model="editedAccount.money"/>
+                    <span ng-if="!compareRow(editedRow, account)">{{ account.money }}</span>
+                    <span ng-if="!compareRow(editedRow, account)">{{ showCurrencySign(account.currency_id) }}</span>
+                    <span ng-if="compareRow(editedRow, account)">
+                        <input type="text" class="form-control" ng-model="editedRow.money"/>
                     </span>
-                    <span ng-if="compareAccount(editedAccount, account)">
-                        <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="editedAccount.currency_id"></select>
+                    <span ng-if="compareRow(editedRow, account)">
+                        <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="editedRow.currency_id"></select>
                     </span>
                 </td>
                 <td>
-                    <div ng-show="compareAccount(selectedAccount, account) && !editedAccount" class="pull-right row-table-controls">
-                        <a href="#" class="table-control btn btn-sm btn-info" ng-click="showEditAccountForm($event, account);" title="Edit account" data-toggle="tooltip" data-position="top" tooltip>
+                    <div ng-show="compareRow(selectedRow, account) && !editedRow" class="pull-right row-table-controls">
+                        <a href="#" class="table-control btn btn-sm btn-info" ng-click="showEditRowForm($event, account);" title="Edit account" data-toggle="tooltip" data-position="top" tooltip>
                             <i class="fa fa-pencil"></i>
                         </a>
-                        <a href="#" class="table-control btn btn-sm btn-danger" ng-click="deleteAccount()" title="Delete account" data-toggle="tooltip" data-position="top" tooltip>
+                        <a href="#" class="table-control btn btn-sm btn-danger" ng-click="deleteRow(mode)" title="Delete account" data-toggle="tooltip" data-position="top" tooltip>
                             <i class="fa fa-trash"></i>
                         </a>
                     </div>
-                    <div ng-show="compareAccount(editedAccount, account)">
+                    <div ng-show="compareRow(editedRow, account)">
                         <div class="edit-controls pull-right">
-                            <button type="button" class="btn btn-sm btn-success" ng-click="editAccount()" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
+                            <button type="button" class="btn btn-sm btn-success" ng-click="editRow(mode)" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
                                 <i class="fa fa-check"></i>
                             </button>
-                            <button type="button" class="btn btn-sm btn-danger" ng-click="cancelEditAccount()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
+                            <button type="button" class="btn btn-sm btn-danger" ng-click="cancelEditRow()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
                                 <i class="fa fa-close"></i>
                             </button>
                         </div>
                     </div>
                 </td>
             </tr>
-            <tr ng-if="newAccount">
+            <tr ng-if="newRow">
                 <td>
                     {{ accounts.length + 1 }}
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="newAccount.name"/>
+                    <input type="text" class="form-control" ng-model="newRow.name"/>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="newAccount.money"/>
-                    <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="newAccount.currency_id"></select>
+                    <input type="text" class="form-control" ng-model="newRow.money"/>
+                    <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="newRow.currency_id"></select>
                 </td>
                 <td>
                     <div class="add-controls pull-right">
-                        <button type="button" class="btn btn-sm btn-success" ng-click="addAccount()" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
+                        <button type="button" class="btn btn-sm btn-success" ng-click="addRow(mode)" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
                             <i class="fa fa-check"></i>
                         </button>
-                        <button type="button" class="btn btn-sm btn-danger" ng-click="cancelAddAccount()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
+                        <button type="button" class="btn btn-sm btn-danger" ng-click="cancelAdding()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
                             <i class="fa fa-close"></i>
                         </button>
                     </div>

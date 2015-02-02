@@ -3,28 +3,13 @@
 
     angular.module('Book').controller('incomeCtrl', ['$scope', 'incomeApi', 'Time', function($scope, incomeApi, Time) {
 
+        $scope.mode = 'income';
         $scope.income = [];
-
-        $scope.$watch(function() {
-            return Time.getMonth();
-        }, function(newValue, oldValue){
-            if(newValue) {
-                getIncome();
-            }
-        });
-
-        $scope.$watch(function() {
-            return Time.getYear();
-        }, function(newValue, oldValue){
-            if(newValue !== oldValue) {
-                getIncome();
-            }
-        });
-
-        var getIncome = function() {
-            incomeApi.getIncome().then(function(income) {
-                $scope.income  = income;
-            });
+        $scope.newIncomeProps = {
+            name: '',
+            money: '',
+            currency_id: 2,
+            date: ''
         };
 
     }]);

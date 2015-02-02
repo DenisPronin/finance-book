@@ -8,7 +8,7 @@
 
         var accounts = [];
 
-        me.getAccounts = function(){
+        me.get = function(){
             var deferred = $q.defer();
 
             bookService.getTableData(mode).then(function(accounts) {
@@ -20,7 +20,7 @@
             return deferred.promise;
         };
 
-        me.addAccount = function(newAccount) {
+        me.add = function(newAccount) {
             var deferred = $q.defer();
             var month = Time.getMonth();
             var year = Time.getYear();
@@ -42,7 +42,7 @@
             return deferred.promise;
         };
 
-        me.deleteAccount = function(accountId) {
+        me.delete = function(accountId) {
             var deferred = $q.defer();
 
             $http.delete('/accounts/' + accountId)
@@ -60,7 +60,7 @@
             return deferred.promise;
         };
 
-        me.editAccount = function(account) {
+        me.edit = function(account) {
             var deferred = $q.defer();
 
             var month = Time.getMonth();
