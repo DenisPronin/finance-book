@@ -4,7 +4,7 @@ var connection = mysql.createConnection(config.dbOptions);
 
 var common = require('./../common');
 
-var account = {
+var accountModel = {
     id: 'int',
     name: 'string',
     money: 'int',
@@ -16,14 +16,14 @@ var account = {
 };
 
 var getAccount = function(monthId, year, userId, callback) {
-    var fields = common.getFieldsFromModel(account, ['user_id']);
+    var fields = common.getFieldsFromModel(accountModel, ['user_id']);
     connection.query('select ' + fields + ' from accounts where month_id = '+ monthId + ' and year = ' + year + ' and user_id=' + userId, function(err, rows){
         callback(err, rows);
     });
 };
 
 var addAccount = function(newAccount, callback) {
-    var fields = common.getFieldsFromModel(account, ['id']);
+    var fields = common.getFieldsFromModel(accountModel, ['id']);
     var query = 'insert into accounts (' + fields + ') values(' +
         '"' + newAccount.name + '",' +
         '"' + newAccount.money + '", ' +
@@ -47,9 +47,9 @@ var deleteAccount = function(accountId, callback) {
 };
 
 var editAccount = function(editingAccount, callback) {
-    var fields = common.getFieldsFromModel(account, ['id']);
+    var fields = common.getFieldsFromModel(accountModel, ['id']);
     var s = [];
-    for (var field in account) {
+    for (var field in accountModel) {
         s.push(field + '="' + editingAccount[field] + '"');
     }
     s = s.join(',');
