@@ -9,7 +9,7 @@
             name: '',
             money: '',
             currency_id: 2,
-            date: new Date()
+            date: moment().format('DD/MM/YYYY')
         };
 
     }]);

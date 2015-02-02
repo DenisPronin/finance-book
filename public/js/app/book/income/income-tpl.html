@@ -48,7 +48,7 @@
                 <td>
                     <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ _income.date }}</span>
                     <span ng-if="compareRow(editedRow, _income, inc.mode)">
-                        <input type="text" class="form-control" ng-model="editedRow.date"/>
+                        <input type="text" class="form-control" ng-model="editedRow.date" datepicker/>
                     </span>
                 </td>
                 <td>
@@ -84,7 +84,7 @@
                     <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="newRow.currency_id"></select>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="newRow.date"/>
+                    <input type="text" ng-model="newRow.date" class="form-control" datepicker>
                 </td>
                 <td>
                     <div class="add-controls pull-right">
