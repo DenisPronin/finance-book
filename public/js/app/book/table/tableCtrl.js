@@ -115,8 +115,8 @@
             return $scope.newRow && $scope.tables[mode].active;
         };
 
-        $scope.selectRow = function(row) {
-            if($scope.compareRow($scope.editedRow, row)) {
+        $scope.selectRow = function(row, mode) {
+            if($scope.compareRow($scope.editedRow, row, mode)) {
                 return false;
             }
             $scope.editedRow = null;

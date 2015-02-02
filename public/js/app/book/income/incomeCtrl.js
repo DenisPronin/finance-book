@@ -9,7 +9,7 @@
             name: '',
             money: '',
             currency_id: 2,
-            date: ''
+            date: new Date()
         };
 
     }]);

@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="_income in income" ng-if="income.length > 0" ng-click="selectRow(_income)" ng-class="{'info': compareRow(selectedRow, _income, inc.mode)}">
+            <tr ng-repeat="_income in income" ng-if="income.length > 0" ng-click="selectRow(_income, inc.mode)" ng-class="{'info': compareRow(selectedRow, _income, inc.mode)}">
                 <td>{{ $index + 1 }}</td>
                 <td>
                     <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ _income.name }}</span>

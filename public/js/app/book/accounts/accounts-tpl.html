@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="account in accounts" ng-if="accounts.length > 0" ng-click="selectRow(account)" ng-class="{'info': compareRow(selectedRow, account, acc.mode)}">
+            <tr ng-repeat="account in accounts" ng-if="accounts.length > 0" ng-click="selectRow(account, acc.mode)" ng-class="{'info': compareRow(selectedRow, account, acc.mode)}">
                 <td>{{ $index + 1 }}</td>
                 <td>
                     <span ng-if="!compareRow(editedRow, account, acc.mode)">{{ account.name }}</span>
