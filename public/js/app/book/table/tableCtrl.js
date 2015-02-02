@@ -8,11 +8,13 @@
         $scope.tables = {
             accounts: {
                 service: accountsApi,
-                fieldList: 'accounts'
+                fieldList: 'accounts',
+                active: false
             },
             income: {
                 service: incomeApi,
-                fieldList: 'income'
+                fieldList: 'income',
+                active: false
             }
         };
 
@@ -50,7 +52,7 @@
         $scope.showAddForm = function(propertiesObj) {
             $scope.selectedRow = null;
             $scope.editedRow = null;
-            $scope.newRow = propertiesObj;
+            $scope.newRow = angular.copy(propertiesObj);
         };
 
         $scope.addRow = function(mode) {
@@ -59,7 +61,7 @@
                 var row = $scope.newRow;
                 row.id = rowId;
                 $scope[mode].push(row);
-                $scope.newRow = null;
+                $scope.cancelAdding();
             });
         };
 
@@ -71,7 +73,7 @@
             if($scope.selectedRow) {
                 var rowId = $scope.selectedRow.id;
                 var service = $scope.tables[mode].service;
-                service.delete(rowId).then(function() {
+                service.deleteRow(rowId).then(function() {
                     $scope[mode] = $scope[mode].filter(function(_row) {
                         return _row.id !== rowId;
                     });
@@ -109,6 +111,10 @@
             }
         };
 
+        $scope.checkNewRow = function(mode) {
+            return $scope.newRow && $scope.tables[mode].active;
+        };
+
         $scope.selectRow = function(row) {
             if($scope.compareRow($scope.editedRow, row)) {
                 return false;
@@ -117,8 +123,14 @@
             $scope.selectedRow = row;
         };
 
-        $scope.compareRow = function(row1, row2) {
-            return (row1 && row2 && row1.id === row2.id)
+        $scope.activateTable = function(mode) {
+            for (var _mode in $scope.tables) {
+                $scope.tables[_mode].active = _mode === mode;
+            }
+        };
+
+        $scope.compareRow = function(row1, row2, mode) {
+            return (row1 && row2 && row1.id === row2.id && $scope.tables[mode].active)
         };
 
         $scope.showCurrencySign = function(currency_id) {
@@ -126,6 +138,9 @@
             return currency.sign;
         };
 
+        $scope.tdLength = function(props) {
+            return Object.keys(props).length + 2;
+        };
     }]);
 
 })();

@@ -1,4 +1,7 @@
-.accounts-container {
+.accounts-container,
+.income-container {
+  position: relative;
+
   .table-controls {
     position: absolute;
     right: 15px;

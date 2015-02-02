@@ -1,24 +1,103 @@
-<div class="income-container" ng-controller="incomeCtrl">
-    <h2>Income</h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>№</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="_income in income" ng-if="income.length > 0">
-            <td>{{ $index + 1 }}</td>
-            <td>{{ _income.name }}</td>
-            <td>{{ _income.money }}</td>
-            <td>{{ _income.date }}</td>
-        </tr>
-        <tr ng-if="income.length === 0">
-            <td colspan="4"> No data</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="income-container" ng-controller="incomeCtrl as inc">
+    <div ng-click="activateTable(inc.mode)">
+        <div>
+            <h4 class="pull-left">Income</h4>
+        <span class="table-controls">
+            <a href="#" class="table-control btn btn-sm btn-success" ng-click="showAddForm(newIncomeProps)" title="Add income" data-toggle="tooltip" data-position="top" tooltip>
+                <i class="fa fa-plus"></i>
+            </a>
+        </span>
+        </div>
+
+        <table class="table">
+            <colgroup>
+                <col style="width: 10px;">
+                <col style="width: auto">
+                <col style="width: 120px;">
+                <col style="width: 120px;">
+                <col style="width: 90px;">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="_income in income" ng-if="income.length > 0" ng-click="selectRow(_income)" ng-class="{'info': compareRow(selectedRow, _income, inc.mode)}">
+                <td>{{ $index + 1 }}</td>
+                <td>
+                    <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ _income.name }}</span>
+                    <span ng-if="compareRow(editedRow, _income, inc.mode)">
+                        <input type="text" class="form-control" ng-model="editedRow.name"/>
+                    </span>
+                </td>
+                <td>
+                    <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ _income.money }}</span>
+                    <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ showCurrencySign(_income.currency_id) }}</span>
+                    <span ng-if="compareRow(editedRow, _income, inc.mode)">
+                        <input type="text" class="form-control" ng-model="editedRow.money"/>
+                    </span>
+                    <span ng-if="compareRow(editedRow, _income, inc.mode)">
+                        <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="editedRow.currency_id"></select>
+                    </span>
+                </td>
+                <td>
+                    <span ng-if="!compareRow(editedRow, _income, inc.mode)">{{ _income.date }}</span>
+                    <span ng-if="compareRow(editedRow, _income, inc.mode)">
+                        <input type="text" class="form-control" ng-model="editedRow.date"/>
+                    </span>
+                </td>
+                <td>
+                    <div ng-show="compareRow(selectedRow, _income, inc.mode) && !editedRow" class="pull-right row-table-controls">
+                        <a href="#" class="table-control btn btn-sm btn-info" ng-click="showEditRowForm($event, _income);" title="Edit income" data-toggle="tooltip" data-position="top" tooltip>
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a href="#" class="table-control btn btn-sm btn-danger" ng-click="deleteRow(inc.mode)" title="Delete income" data-toggle="tooltip" data-position="top" tooltip>
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                    <div ng-show="compareRow(editedRow, _income, inc.mode)">
+                        <div class="edit-controls pull-right">
+                            <button type="button" class="btn btn-sm btn-success" ng-click="editRow(inc.mode)" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
+                                <i class="fa fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" ng-click="cancelEditRow()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-if="checkNewRow(inc.mode)">
+                <td>
+                    {{ income.length + 1 }}
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="newRow.name"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="newRow.money"/>
+                    <select class="form-control" ng-options="currency.id as currency.sign for currency in currencyList" ng-model="newRow.currency_id"></select>
+                </td>
+                <td>
+                    <div class="add-controls pull-right">
+                        <button type="button" class="btn btn-sm btn-success" ng-click="addRow(inc.mode)" title="Ok" data-toggle="tooltip" data-position="top" tooltip>
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-danger" ng-click="cancelAdding()" title="Cancel" data-toggle="tooltip" data-position="top" tooltip>
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-if="accounts.length === 0">
+                <td colspan="{{ tdLength(newAccountProps) }}"> No data</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('Book').controller('accountsCtrl', ['$scope', 'accountsApi', 'Time', 'currencyApi', function($scope, accountsApi, Time, currencyApi) {
+    angular.module('Book').controller('accountsCtrl', ['$scope', 'accountsApi', function($scope, accountsApi) {
 
-        $scope.mode = 'accounts';
+        this.mode = 'accounts';
         $scope.accounts = [];
         $scope.newAccountProps = {
             name: '',

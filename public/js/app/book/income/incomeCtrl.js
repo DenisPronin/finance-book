@@ -3,7 +3,7 @@
 
     angular.module('Book').controller('incomeCtrl', ['$scope', 'incomeApi', 'Time', function($scope, incomeApi, Time) {
 
-        $scope.mode = 'income';
+        this.mode = 'income';
         $scope.income = [];
         $scope.newIncomeProps = {
             name: '',

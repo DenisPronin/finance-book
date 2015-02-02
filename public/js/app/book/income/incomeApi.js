@@ -23,6 +23,19 @@
             return deferred.promise;
         };
 
+        me.add = function(newAccount) {
+            return bookService.addRow(newAccount, mode);
+
+        };
+
+        me.deleteRow = function(accountId) {
+            return bookService.deleteRow(accountId, mode);
+        };
+
+        me.edit = function(account) {
+            return bookService.editRow(account, mode);
+        };
+
     }]);
 
 })();
