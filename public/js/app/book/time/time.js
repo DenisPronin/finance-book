@@ -35,6 +35,15 @@
             return months;
         };
 
+        me.splitDate = function(formatDate) {
+            var date = moment(formatDate, 'DD/MM/YYYY');
+            return {
+                day: date.date(),
+                month: date.month(),
+                year: date.year()
+            }
+        };
+
         var months = [
             {
                 id: 0,

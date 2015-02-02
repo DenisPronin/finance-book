@@ -23,17 +23,26 @@
             return deferred.promise;
         };
 
-        me.add = function(newAccount) {
-            return bookService.addRow(newAccount, mode);
+        me.add = function(newIncome) {
+            delete newIncome.order_num;
+            var date = Time.splitDate(newIncome.date);
+            newIncome.day = date.day;
+            newIncome.month = date.month;
+            newIncome.year = date.year;
+            return bookService.addRow(newIncome, mode);
 
         };
 
-        me.deleteRow = function(accountId) {
-            return bookService.deleteRow(accountId, mode);
+        me.deleteRow = function(incomeId) {
+            return bookService.deleteRow(incomeId, mode);
         };
 
-        me.edit = function(account) {
-            return bookService.editRow(account, mode);
+        me.edit = function(income) {
+            var date = Time.splitDate(income.date);
+            income.day = date.day;
+            income.month = date.month;
+            income.year = date.year;
+            return bookService.editRow(income, mode);
         };
 
     }]);
