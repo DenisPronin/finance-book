@@ -30,6 +30,10 @@
             return null;
         };
 
+        me.getDefaultCurrency = function() {
+            return currency[1];
+        };
+
     }]);
 
 })();

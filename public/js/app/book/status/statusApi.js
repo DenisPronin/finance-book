@@ -32,7 +32,7 @@
             return null;
         };
 
-        me.getNeutralStatus = function() {
+        me.getDefaultStatus = function() {
             return statuses[2];
         };
 

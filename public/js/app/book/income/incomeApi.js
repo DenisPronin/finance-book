@@ -29,7 +29,7 @@
             newIncome.day = date.day;
             newIncome.month = date.month;
             newIncome.year = date.year;
-            newIncome.status_id = statusApi.getNeutralStatus().id;
+            newIncome.status_id = statusApi.getDefaultStatus().id;
             return bookService.addRow(newIncome, mode);
 
         };

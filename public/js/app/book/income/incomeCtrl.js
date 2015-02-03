@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('Book').controller('incomeCtrl', ['$scope', 'incomeApi', 'Time', function($scope, incomeApi, Time) {
+    angular.module('Book').controller('incomeCtrl', ['$scope', 'incomeApi', 'currencyApi', function($scope, incomeApi, currencyApi) {
 
         this.mode = 'income';
         $scope.income = [];
         $scope.newIncomeProps = {
             name: '',
             money: '',
-            currency_id: 2,
+            currency_id: currencyApi.getDefaultCurrency().id,
             date: moment().format('DD/MM/YYYY')
         };
 
