@@ -34,7 +34,7 @@ var addDebt = function(newDebt, callback) {
         '"' + newDebt.order_num + '", ' +
         '"' + newDebt.month_id + '", ' +
         '"' + newDebt.year + '", ' +
-        '"' + newDebt.status_id + '"' +
+        '"' + newDebt.status_id + '", ' +
         '"' + newDebt.deadline + '"' +
         ')';
 

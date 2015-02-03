@@ -1,4 +1,5 @@
 var Debts = require('../models/Debts');
+var moment = require("moment");
 
 module.exports = function (app) {
     app.get('/debts/:monthId/:year', function (req, res, next) {
@@ -21,6 +22,8 @@ module.exports = function (app) {
             res.redirect('/');
         }
         else {
+            var deadline = convertDeadline(req.body.deadline);
+
             var newDebt = {
                 name: req.body.name,
                 money: req.body.money,
@@ -30,7 +33,7 @@ module.exports = function (app) {
                 user_id: req.user.id,
                 order_num: req.body.order_num,
                 status_id: 3,
-                deadline: new Date(req.body.deadline)
+                deadline: deadline
             };
             Debts.addDebt(newDebt, function(err, debt) {
                 if(err) {
@@ -63,6 +66,8 @@ module.exports = function (app) {
     });
 
     app.post('/debts/edit', function(req, res, next) {
+        var deadline = convertDeadline(req.body.deadline);
+
         var editingDebt = {
             id: req.body.id,
             name: req.body.name,
@@ -73,7 +78,7 @@ module.exports = function (app) {
             user_id: req.user.id,
             order_num: req.user.order_num,
             status_id: 3,
-            deadline: req.body.deadline
+            deadline: deadline
         };
 
         Debts.editDebt(editingDebt, function(err, debt) {
@@ -87,5 +92,11 @@ module.exports = function (app) {
         });
 
     });
+
+    var convertDeadline = function(deadline) {
+        deadline = moment(deadline, 'DD/MM/YYYY');
+        deadline = deadline.format('YYYY-MM-DD HH:mm:ss');
+        return deadline;
+    };
 
 };
