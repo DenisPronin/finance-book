@@ -29,7 +29,7 @@ module.exports = function (app) {
                 day: req.body.day,
                 month_id: req.body.month_id,
                 year: req.body.year,
-                status_id: 2
+                status_id: 3
             };
             Income.addIncome(newIncome, function(err, income) {
                 if(err) {

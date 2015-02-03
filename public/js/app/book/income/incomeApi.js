@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('Book').service('incomeApi', ['$http', '$q', 'Time', 'bookService', function($http, $q, Time, bookService) {
+    angular.module('Book').service('incomeApi', ['$http', '$q', 'Time', 'bookService', 'statusApi', function($http, $q, Time, bookService, statusApi) {
 
         var me = this;
         var mode = 'income';
@@ -29,6 +29,7 @@
             newIncome.day = date.day;
             newIncome.month = date.month;
             newIncome.year = date.year;
+            newIncome.status_id = statusApi.getNeutralStatus().id;
             return bookService.addRow(newIncome, mode);
 
         };
