@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('Book').controller('tableCtrl', ['$scope', 'Time', 'currencyApi', 'accountsApi', 'incomeApi', 'debtsApi', function($scope, Time, currencyApi, accountsApi, incomeApi, debtsApi) {
+    angular.module('Book').controller('tableCtrl', ['$scope', 'Time', 'currencyApi', 'accountsApi', 'incomeApi', 'debtsApi', 'costsApi', function($scope, Time, currencyApi, accountsApi, incomeApi, debtsApi, costsApi) {
 
         $scope.currencyList = currencyApi.getCurrencyList();
 
@@ -19,6 +19,11 @@
             debts: {
                 service: debtsApi,
                 fieldList: 'debts',
+                active: false
+            },
+            costs: {
+                service: costsApi,
+                fieldList: 'costs',
                 active: false
             }
         };
